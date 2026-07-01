@@ -2,11 +2,11 @@ streamlit
 pandas
 requests
 beautifulsoup4
-selenium
+selenium>=4.25.0
 webdriver-manager
 lxml
 numpy
 openpyxl
-undetected_chromedriver
+undetected-chromedriver>=3.5.5
 folium
 plotly
