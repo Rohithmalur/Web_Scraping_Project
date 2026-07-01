@@ -8,4 +8,5 @@ lxml
 numpy
 openpyxl
 undetected_chromedriver
-distutils
+folium
+plotly
