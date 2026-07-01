@@ -30,7 +30,7 @@ def clear_uc_cache():
 # ======================================================
 # Launch Browser
 # ======================================================
-def launch_browser(headless=False):
+"""def launch_browser(headless=False):
    clear_uc_cache()
    options = uc.ChromeOptions()
    options.add_argument("--headless=new")
@@ -49,6 +49,23 @@ def launch_browser(headless=False):
    except Exception:
        # Last fallback
        driver = uc.Chrome()
+   driver.set_window_size(1920,1080)
+   driver.set_page_load_timeout(60)
+   return driver"""
+
+def launch_browser(headless=True):
+   clear_uc_cache()
+   options = uc.ChromeOptions()
+   options.add_argument("--headless=new")
+   options.add_argument("--no-sandbox")
+   options.add_argument("--disable-dev-shm-usage")
+   options.add_argument("--disable-gpu")
+   options.add_argument("--window-size=1920,1080")
+   options.add_argument("--remote-debugging-port=9222")
+   driver = uc.Chrome(
+       options=options,
+       use_subprocess=False
+   )
    driver.set_window_size(1920,1080)
    driver.set_page_load_timeout(60)
    return driver
