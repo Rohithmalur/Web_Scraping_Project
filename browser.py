@@ -53,7 +53,7 @@ def clear_uc_cache():
    driver.set_page_load_timeout(60)
    return driver"""
 
-def launch_browser(headless=True):
+"""def launch_browser(headless=True):
    clear_uc_cache()
    options = uc.ChromeOptions()
    #options.add_argument("--headless=new")
@@ -67,6 +67,21 @@ def launch_browser(headless=True):
        use_subprocess=False
    )
    driver.set_window_size(1920,1080)
+   driver.set_page_load_timeout(60)
+   return driver"""
+def launch_browser(headless=False):
+   clear_uc_cache()
+   options = uc.ChromeOptions()
+   if headless:
+       options.add_argument("--headless=new")
+   try:
+       # Same approach as your working RPA script
+       #driver = uc.Chrome(options=options)
+       driver = uc.Chrome(version_main=149, options=options)
+   except Exception:
+       # Last fallback
+       driver = uc.Chrome()
+   driver.maximize_window()
    driver.set_page_load_timeout(60)
    return driver
 
