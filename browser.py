@@ -8,7 +8,10 @@ import os
 import base64
 import time
 import shutil
-import undetected_chromedriver as uc
+#import undetected_chromedriver as uc
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -30,23 +33,26 @@ def clear_uc_cache():
 # ======================================================
 # Launch Browser
 # ======================================================
-"""def launch_browser(headless=True):
-   clear_uc_cache()
-   options = uc.ChromeOptions()
-   options.add_argument("--headless=new")
+def launch_browser(headless=True):
+   options = Options()
+   if headless:
+       options.add_argument("--headless=new")
+   options.binary_location = "/usr/bin/chromium"
    options.add_argument("--no-sandbox")
    options.add_argument("--disable-dev-shm-usage")
    options.add_argument("--disable-gpu")
    options.add_argument("--window-size=1920,1080")
-   driver = uc.Chrome(
-       options=options,
-       use_subprocess=False
+   options.add_argument("--remote-debugging-port=9222")
+   service = Service("/usr/bin/chromedriver")
+   driver = webdriver.Chrome(
+       service=service,
+       options=options
    )
    driver.set_page_load_timeout(60)
-   return driver"""
+   return driver
+   
 
-
-def launch_browser(headless=True):
+"""def launch_browser(headless=True):
    clear_uc_cache()
    options = uc.ChromeOptions()
    if headless:
@@ -67,7 +73,7 @@ def launch_browser(headless=True):
        use_subprocess=True
    )
    driver.set_page_load_timeout(60)
-   return driver
+   return driver"""
 
 # ======================================================
 # Wait Element
