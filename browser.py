@@ -30,26 +30,7 @@ def clear_uc_cache():
 # ======================================================
 # Launch Browser
 # ======================================================
-
-
 """def launch_browser(headless=True):
-   clear_uc_cache()
-   options = uc.ChromeOptions()
-   #options.add_argument("--headless=new")
-   options.add_argument("--no-sandbox")
-   options.add_argument("--disable-dev-shm-usage")
-   options.add_argument("--disable-gpu")
-   options.add_argument("--window-size=1920,1080")
-   options.add_argument("--remote-debugging-port=9222")
-   driver = uc.Chrome(
-       options=options,
-       use_subprocess=False
-   )
-   driver.set_window_size(1920,1080)
-   driver.set_page_load_timeout(60)
-   return driver"""
-
-def launch_browser(headless=True):
    clear_uc_cache()
    options = uc.ChromeOptions()
    options.add_argument("--headless=new")
@@ -62,7 +43,31 @@ def launch_browser(headless=True):
        use_subprocess=False
    )
    driver.set_page_load_timeout(60)
-   return driver   
+   return driver"""
+
+
+def launch_browser(headless=True):
+   clear_uc_cache()
+   options = uc.ChromeOptions()
+   if headless:
+       options.add_argument("--headless=new")
+   options.binary_location = "/usr/bin/chromium"
+   options.add_argument("--no-sandbox")
+   options.add_argument("--disable-dev-shm-usage")
+   options.add_argument("--disable-gpu")
+   options.add_argument("--disable-dev-tools")
+   options.add_argument("--no-zygote")
+   options.add_argument("--single-process")
+   options.add_argument("--window-size=1920,1080")
+   options.add_argument("--disable-blink-features=AutomationControlled")
+   driver = uc.Chrome(
+       options=options,
+       browser_executable_path="/usr/bin/chromium",
+       driver_executable_path="/usr/bin/chromedriver",
+       use_subprocess=True
+   )
+   driver.set_page_load_timeout(60)
+   return driver
 
 # ======================================================
 # Wait Element
