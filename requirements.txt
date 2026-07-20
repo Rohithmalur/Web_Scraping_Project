@@ -11,7 +11,5 @@ lxml
 requests
 python-dotenv
 Pillow
-requests
-lxml
 folium
 plotly
