@@ -1,7 +1,8 @@
 streamlit
-selenium
-undetected-chromedriver
+selenium>=4.20
+undetected-chromedriver==3.5.5
 webdriver-manager
+setuptools
 pandas
 numpy
 openpyxl
