@@ -3,7 +3,7 @@
 import streamlit as st
 import pandas as pd
 from io import StringIO
-from maersk import scrape_maersk
+from scrapers.maersk import scrape_maersk
 from utils.export import (
    excel_bytes,
    csv_bytes,
